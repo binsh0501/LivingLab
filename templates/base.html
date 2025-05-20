@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}불법 현수막 신고{% endblock %}</title>
+  <style>
+    /* 내비게이션바 기본 스타일 */
+    nav {
+      background: #333;
+      padding: 1em 2em;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0; padding: 0;
+      display: flex;
+      align-items: center;
+    }
+    nav li {
+      margin-right: 1em;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    .container {
+      padding: 1em;
+    }
+    #logo {
+        color:#fff;
+        font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+        <li id="logo"><a href="/" style="text-decoration-line: none;">공돌이</a></li>
+        <li><a href="{{ url_for('index') }}">홈</a></li>
+        <li><a href="{{ url_for('report') }}">신고하기</a></li>
+        <li><a href="{{ url_for('show_posts') }}">신고 목록</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+
+</body>
+</html>

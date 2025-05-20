@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}글 {{ post.id }} 상세 | 불법 현수막 신고{% endblock %}
+{% block content %}
+  <h1>신고 글 {{ post.id }}</h1>
+  <h2>{{ post.title }}</h2>
+  <p><small>작성일자: {{ post.created }}</small></p>
+  <div style="margin-top:1em;">
+    <p>{{ post.content }}</p>
+    {% if post.image %}
+      <div style="margin-top:1em;">
+        <img src="{{ url_for('uploaded_file', filename=post.image) }}"
+             alt="첨부 이미지" style="max-width:400px;">
+      </div>
+    {% endif %}
+  </div>
+  <p style="margin-top:2em;">
+    <a href="{{ url_for('show_posts') }}">← 목록으로</a> |
+    <a href="{{ url_for('index') }}">메인으로</a>
+  </p>
+{% endblock %}

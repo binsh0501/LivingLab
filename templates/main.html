@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>불법 현수막 신고</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}메인 | 불법 현수막 신고{% endblock %}
+    {% block content %}
+    <h1>불법 현수막 신고 포털</h1>
+    <ul>
+        <li><a href="{{ url_for('report') }}">신고하기</a></li>
+        <li><a href="{{ url_for('show_posts') }}">신고 목록 보기</a></li>
+    </ul>
+    {% endblock %}
+</body>
+</html>

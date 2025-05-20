@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신고하기</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}신고하기 | 불법 현수막 신고{% endblock %}
+    {% block content %}
+    <style>
+    .page-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+
+    /* 입력 폼 전체 너비 고정 및 가운데 정렬 */
+    .form-group {
+      width: 50%;
+      margin: 0 auto 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* 필드 너비를 부모(.form-group)에 맞춰 100% */
+    .form-input,
+    .form-textarea,
+    .form-file {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+    .form-input {
+      height: 2.5rem;
+    }
+    .form-textarea {
+      min-height: 12rem;
+      resize: none;
+    }
+    .form-file {
+      padding: 0.5rem;
+    }
+
+    .form-note {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: #666;
+    }
+
+    /* 버튼 컨테이너도 같은 너비로, 왼쪽 정렬 */
+    .form-actions {
+      width: 50%;
+      margin: 2rem auto 0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-cancel {
+      background: #f2f2f2;
+      color: #333;
+    }
+    .btn-submit {
+      background: #333;
+      color: #fff;
+    }
+  </style>
+
+  <h1 class="page-title">신고하기</h1>
+  <form action="{{ url_for('report') }}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="title">제목</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        class="form-input"
+        placeholder="제목을 입력하세요"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="content">내용</label>
+      <textarea
+        id="content"
+        name="content"
+        class="form-textarea"
+        placeholder="내용을 입력하세요"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="image">이미지 첨부</label>
+      <input
+        type="file"
+        id="image"
+        name="image"
+        class="form-file"
+        accept="image/*"
+      >
+      <span class="form-note">
+        이미지 파일만 업로드 가능합니다.
+      </span>
+    </div>
+
+    <div class="form-actions">
+      <a href="{{ url_for('index') }}" class="btn btn-cancel">취소</a>
+      <button type="submit" class="btn btn-submit">작성하기</button>
+    </div>
+  </form>
+    {% endblock %}
+    <p><a href="{{ url_for('index') }}">← 메인으로</a></p>
+</body>
+</html>

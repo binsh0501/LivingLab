@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}신고 목록 | 불법 현수막 신고{% endblock %}
+{% block content %}
+  <h1>신고 목록</h1>
+
+  {% if posts %}
+    <table style="width:100%; border-collapse: collapse; margin-top:1em;">
+      <thead>
+        <tr>
+          <th style="border:1px solid #ddd; padding:0.75em; text-align:center;">번호</th>
+          <th style="border:1px solid #ddd; padding:0.75em;">제목</th>
+          <th style="border:1px solid #ddd; padding:0.75em; text-align:center;">작성일자</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in posts %}
+          <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:0.75em; text-align:center;">{{ post.id }}</td>
+            <td style="padding:0.75em;">
+              <a href="{{ url_for('post_detail', post_id=post.id) }}">
+                {{ post.title }}
+              </a>
+            </td>
+            <td style="padding:0.75em; text-align:center;">{{ post.created }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p style="margin-top:1em;">아직 신고된 글이 없습니다.</p>
+  {% endif %}
+{% endblock %}
